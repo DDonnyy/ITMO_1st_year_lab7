@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="Server:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Server_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Server.jar">
+        <element id="module-output" name="Server" />
+      </element>
+      <element id="library" level="project" name="postgresql-42.2.12" />
+    </root>
+  </artifact>
+</component>

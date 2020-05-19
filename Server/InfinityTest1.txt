@@ -1,0 +1,5 @@
+kill_kirill command1
+execute_script InfinityTest1.txt
+kill_kirill command2
+execute_script InfinityTest2.txt
+kill_kirill command5

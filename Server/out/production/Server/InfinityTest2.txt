@@ -1,0 +1,4 @@
+kill_kirill command3
+execute_script InfinityTest1.txt
+execute_script InfinityTest2.txt
+kill_kirill command4
