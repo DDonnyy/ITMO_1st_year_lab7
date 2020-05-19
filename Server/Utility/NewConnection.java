@@ -69,6 +69,7 @@ public class NewConnection implements Runnable {
                     islogged= false;
                     if (key.toUpperCase().equals("NO") || key.toUpperCase().equals("НЕТ") || regist) {
                         serverSender.send(clientSocket, "Для работы потребуется регистрация.", 2);
+                        Thread.sleep(20);
                         while (!islogged) {
                             serverSender.send(clientSocket, "Введите логин", 1);
                             String login = (String) (serverReceiver.receive(clientSocket));

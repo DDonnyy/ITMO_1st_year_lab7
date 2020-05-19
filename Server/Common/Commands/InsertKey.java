@@ -37,7 +37,6 @@ public class InsertKey implements Command {
         dBworking.loadAllTickets();
         TicketCollection.getLock().writeLock().lock();
         try {
-            System.out.println(1);
             if (ExecuteScript.inExecution){
                 if(ExecuteScript.getExecuteData().equals("")||par1.equals("")||par1==null) {
                     serverSender.send(clientSocket,"Поля для билеты не были заполнены,билет не создан.",2);
@@ -95,7 +94,7 @@ public class InsertKey implements Command {
                             serverSender.send(clientSocket,(String.valueOf(key)),3);
                             Ticket ticket = (Ticket)serverReceiver.receive(clientSocket);
                             ticket.setUser(user);
-                            System.out.println((ticket.getCreationDate()));
+
                             ticketCollection.putTicket(key,ticket);
                             dBworking.uploadAllTickets();
                             serverSender.send(clientSocket,"В коллекцию успешно добавлен элемент.",0);
