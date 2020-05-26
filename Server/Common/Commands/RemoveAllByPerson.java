@@ -26,6 +26,7 @@ public class RemoveAllByPerson implements Command {
         dBworking.loadAllTickets();
         TicketCollection.getLock().writeLock().lock();
         TicketCollection ticketCollection = new TicketCollection();
+        TicketCollection.getLock().writeLock().unlock();
         int collectionSize = ticketCollection.getSize();
         if (collectionSize == 0) {
             if (ExecuteScript.inExecution) serverSender.send(clientSocket, "Коллекция пуста,сравнивать не с чем.", 2);
@@ -46,8 +47,10 @@ public class RemoveAllByPerson implements Command {
                     serverSender.send(clientSocket, "Билетов c указанным человеком не было найдено.", 2);
                 else serverSender.send(clientSocket, "Билетов c указанным человеком не было найдено.", 0);
             } else {
+                TicketCollection.getLock().writeLock().lock();
                 keysToDelete.forEach(ticketCollection::removeTicket);
                 dBworking.uploadAllTickets();
+                TicketCollection.getLock().writeLock().unlock();
                 if (ExecuteScript.inExecution)
                     serverSender.send(clientSocket, "Все возможные обьекты с указанным человеком были удалены.", 2);
                 else serverSender.send(clientSocket, "Все возможные обьекты с указанным человеком были удалены.", 0);

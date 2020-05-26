@@ -62,7 +62,7 @@ public class CreateServer {
         SocketAddress it = new InetSocketAddress(InetAddress.getLocalHost(), 1200);
         CreateServer.checkForExitCommand();
         try {
-            server = new ServerSocket(3000);
+            server = new ServerSocket(3014);
         } catch (BindException e){
             System.out.println("Данный порт уже занят,возможно сервер уже запущен.\n Принудительно завершаю работу.");
             System.exit(0);

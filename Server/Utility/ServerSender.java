@@ -26,6 +26,7 @@ public class ServerSender {
     public  void send(Socket client, String message, Integer needAnswer) {
         Sender sender = new Sender(client, message, needAnswer);
         forkJoinPool.execute(sender);
+
         System.out.println("Отправляю данные клиенту c адресом: "+client.getLocalAddress()+client.getPort());
     }
     public class Sender implements Runnable{

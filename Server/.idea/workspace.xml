@@ -40,36 +40,6 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="studs: database" type="162271b6:PgImplModel$Database" />
       </path>
       <path>
@@ -95,6 +65,15 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="studs: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="sequences" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -134,6 +113,15 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="s285706: schema" type="983ebcf7:PgImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="studs@pg" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="studs: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="s285706: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="sequences" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
     </expand>
     <select />
@@ -167,7 +155,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/Server_jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Client" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -222,17 +210,16 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:postgres@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@44f08e75" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@5e174e17" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:postgres@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@4be9fb5" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@d4c905e" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:postgres@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@448eb605" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="root:studs@pg" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -276,7 +263,10 @@
       <workItem from="1589639753249" duration="2282000" />
       <workItem from="1589796111058" duration="23413000" />
       <workItem from="1589880088040" duration="2723000" />
-      <workItem from="1589882822011" duration="6594000" />
+      <workItem from="1589882822011" duration="8117000" />
+      <workItem from="1590141228890" duration="6706000" />
+      <workItem from="1590398839475" duration="7939000" />
+      <workItem from="1590491566017" duration="2034000" />
     </task>
     <servers />
   </component>
@@ -315,10 +305,10 @@
     </state>
     <state x="2676" y="405" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589797451403" />
     <state x="605" y="321" width="403" height="236" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1589639799345" />
-    <state x="2132" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589825579888">
+    <state x="2132" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590400245874">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2132" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589825579888" />
+    <state x="2132" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590400245874" />
     <state x="212" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587135609824" />
     <state x="2610" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1587477044900">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -328,39 +318,39 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2599" y="168" key="#postgresql-42.2.12.jar/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589441488423" />
-    <state x="2189" y="275" key="FileChooserDialogImpl" timestamp="1589880102948">
+    <state x="2189" y="275" key="FileChooserDialogImpl" timestamp="1590491585382">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="215" y="218" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1587737082312" />
-    <state x="2189" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589880102948" />
+    <state x="2189" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590491585382" />
     <state x="215" y="218" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589641318019" />
     <state x="269" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587382069827" />
-    <state width="1877" height="186" key="GridCell.Tab.0.bottom" timestamp="1589904317970">
+    <state width="1877" height="207" key="GridCell.Tab.0.bottom" timestamp="1590492867383">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="173" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1587738381882" />
-    <state width="1877" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589904317970" />
+    <state width="1877" height="207" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492867383" />
     <state width="1493" height="240" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589641988630" />
     <state width="919" height="238" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587385373141" />
-    <state width="1877" height="186" key="GridCell.Tab.0.center" timestamp="1589904317970">
+    <state width="1877" height="207" key="GridCell.Tab.0.center" timestamp="1590492867383">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="173" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1587738381882" />
-    <state width="1877" height="186" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589904317970" />
+    <state width="1877" height="207" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492867383" />
     <state width="1493" height="240" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589641988629" />
     <state width="919" height="238" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587385373141" />
-    <state width="1877" height="186" key="GridCell.Tab.0.left" timestamp="1589904317970">
+    <state width="1877" height="207" key="GridCell.Tab.0.left" timestamp="1590492867382">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="173" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1587738381881" />
-    <state width="1877" height="186" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589904317970" />
+    <state width="1877" height="207" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492867382" />
     <state width="1493" height="240" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589641988629" />
     <state width="919" height="238" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587385373141" />
-    <state width="1877" height="186" key="GridCell.Tab.0.right" timestamp="1589904317970">
+    <state width="1877" height="207" key="GridCell.Tab.0.right" timestamp="1590492867383">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="173" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1587738381882" />
-    <state width="1877" height="186" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589904317970" />
+    <state width="1877" height="207" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492867383" />
     <state width="1493" height="240" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589641988630" />
     <state width="919" height="238" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587385373141" />
     <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1589882175604">
@@ -403,28 +393,28 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2692" y="404" width="376" height="263" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589623262736" />
-    <state x="2775" y="410" width="322" height="233" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1589880166000">
+    <state x="2775" y="410" width="322" height="233" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1590492352258">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2775" y="410" width="326" height="234" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589880166000" />
+    <state x="2775" y="410" width="326" height="234" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492352258" />
     <state x="684" y="325" width="322" height="233" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1536.824@0.0.1536.824" timestamp="1589641368434" />
-    <state x="2460" y="175" key="com.intellij.database.dbimport.ImportDialog" timestamp="1589880179691">
+    <state x="2460" y="175" key="com.intellij.database.dbimport.ImportDialog" timestamp="1590492387786">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2460" y="175" key="com.intellij.database.dbimport.ImportDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589880179691" />
+    <state x="2460" y="175" key="com.intellij.database.dbimport.ImportDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492387786" />
     <state x="432" y="135" key="com.intellij.database.dbimport.ImportDialog/0.0.1536.824@0.0.1536.824" timestamp="1589641377085" />
     <state x="2610" y="325" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1589799105952">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2610" y="325" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589799105952" />
-    <state x="2676" y="345" width="408" height="344" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1589825953278">
+    <state x="2676" y="345" width="408" height="348" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1590404024780">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2676" y="345" width="408" height="344" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589825953278" />
-    <state x="2378" y="196" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1589804069181">
+    <state x="2676" y="345" width="408" height="348" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590404024780" />
+    <state x="2378" y="196" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1590404439917">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2378" y="196" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589804069181" />
+    <state x="2378" y="196" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590404439917" />
     <state x="2738" y="266" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1589544523341">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -433,10 +423,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="186" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587382063074" />
-    <state x="39" y="9" width="1457" height="714" key="dock-window-1" timestamp="1589802708326">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2578" y="23" width="1041" height="719" key="dock-window-1" timestamp="1590400212256">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="39" y="9" width="1457" height="714" key="dock-window-1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589802708326" />
+    <state x="2578" y="23" width="1041" height="719" key="dock-window-1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590400212256" />
     <state x="0" y="0" width="1233" height="716" key="dock-window-2" timestamp="1589802994573">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -449,10 +439,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="209" y="33" key="new project wizard/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1587737098334" />
-    <state x="493" y="190" key="run.anything.popup" timestamp="1589639939475">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2536" y="240" key="run.anything.popup" timestamp="1590401321694">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2536" y="240" key="run.anything.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589562116371" />
+    <state x="2536" y="240" key="run.anything.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590401321694" />
     <state x="493" y="190" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1589639939475" />
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1589805494556">
       <screen x="1920" y="0" width="1920" height="1040" />

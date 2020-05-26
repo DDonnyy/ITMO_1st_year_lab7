@@ -17,8 +17,8 @@ public class RemoveAllByPerson implements Command {
     }
     @Override
     public void execute(String par1, Socket clientSocket,String user) throws IOException {
-        TicketCollection ticketCollection = new TicketCollection();
-        int collectionSize = ticketCollection.getSize();
+   //     TicketCollection ticketCollection = new TicketCollection();
+      //  int collectionSize = ticketCollection.getSize();
        // if (collectionSize==0) ServerSender.send("Коллекция пуста,сравнивать не с чем.",0);
        // else {
           //  ServerSender.send("",4);

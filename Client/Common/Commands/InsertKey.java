@@ -13,10 +13,6 @@ import java.util.TreeMap;
  * The type Insert key.
  */
 public class InsertKey implements Command {
-
-    TicketCollection ticketCollection = new TicketCollection();
-    CreateTicket createTicket = new CreateTicket();
-
     /**
      * Instantiates a new Insert key.
      */

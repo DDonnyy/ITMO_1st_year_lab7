@@ -10,7 +10,6 @@ public class CreatePerson implements Serializable {
         Ticket t = new Ticket();
         Ticket.Person person = t.new Person();
         Ticket.Location location = t.new Location();
-        person.setPassportID();
         this.setHairColor(person);
         this.setNationality(person);
         this.setCoordinateXForLocation(location);

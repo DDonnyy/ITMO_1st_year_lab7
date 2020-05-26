@@ -18,9 +18,9 @@ public class Clear implements Command {
         Invoker.regist("clear",this);
     }
 
-    TicketCollection ticketCollection = new TicketCollection();
     @Override
     public void execute(String par1, Socket clientSocket,String user) throws IOException {
+        TicketCollection ticketCollection = new TicketCollection();
         if (ticketCollection.getTickets().size()>0){
             ticketCollection.getTickets().clear();
             System.out.println("Коллекция очищена.");

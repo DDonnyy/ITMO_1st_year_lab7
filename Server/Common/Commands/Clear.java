@@ -25,9 +25,9 @@ public class Clear implements Command {
         Invoker.regist("clear",this);
     }
 
-    TicketCollection ticketCollection = new TicketCollection();
     @Override
     public void execute(String par1, Socket clientSocket,String user) throws IOException, SQLException {
+        TicketCollection ticketCollection = new TicketCollection();
         DBworking dBworking = new DBworking();
         dBworking.ConnectionToDB();
         ServerSender serverSender = new ServerSender();

@@ -33,8 +33,7 @@ public class Remove_lower implements Command {
         dBworking.ConnectionToDB();
         ServerSender serverSender = new ServerSender();
         ServerReceiver serverReceiver = new ServerReceiver();
-        dBworking.loadAllTickets();
-        TicketCollection.getLock().writeLock().lock();
+
         if (par1 == null && ExecuteScript.inExecution) {
             serverSender.send(clientSocket, "Параметр не был указан,выполнение команды \"remove_lower\" невозможно.", 2);
         } else if (par1 == null) {
@@ -48,6 +47,7 @@ public class Remove_lower implements Command {
         } else {
             try {
                 dBworking.loadAllTickets();
+                TicketCollection.getLock().writeLock().lock();
                 TicketCollection ticketCollection = new TicketCollection();
                 if (ticketCollection.getSize() == 0) {
                     if (ExecuteScript.inExecution) serverSender.send(clientSocket, "Коллекция как бы пустая.", 2);

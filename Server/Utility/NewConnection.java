@@ -95,7 +95,8 @@ public class NewConnection implements Runnable {
             serverSender.send(clientSocket,"",5);
             System.out.println("Нет подключения к бд,принудительно отключаю клиента:"+clientSocket.getLocalAddress()+clientSocket.getPort());
         } catch (IOException e) {
-            System.out.println("Клиент с адресом:"+clientSocket.getLocalAddress() + clientSocket.getPort()+" отключился");
+            e.printStackTrace();
+            System.out.println( "Клиент с адресом:"+clientSocket.getLocalAddress() + clientSocket.getPort()+" отключился");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -124,6 +125,7 @@ public class NewConnection implements Runnable {
                 }
             } catch (IOException e){
                 System.out.println("Клиент с адресом:"+socket.getLocalAddress() + socket.getPort()+" отключился");
+
             } catch (SQLException e){
                 ServerSender serverSender =new ServerSender();
                 serverSender.send(clientSocket,"",5);

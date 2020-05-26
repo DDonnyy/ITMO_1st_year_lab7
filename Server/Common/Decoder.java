@@ -18,22 +18,18 @@ public class Decoder{
      * @param s the String of collection
      * @return the tree map
      */
-    public static TreeMap<Long,Ticket> decodeIntoCollection(String s) {
+    public static TreeMap<Long,Ticket> decodeIntoCollection(String[] array) {
+        String[]b=array;
         TreeMap<Long, Ticket> collection = new TreeMap<>();
-
-        if (s.length()>0){
-            String a[] = s.split("\n");
-            for(int i=0;i<a.length;i++) {
-                String b[] = a[i].split(",");
                 Ticket ticket = new Ticket();
                 ticket.setMapKey((long) 0);
                 Ticket.Coordinates coordinates = ticket.new Coordinates();
                 Ticket.Person person = ticket.new Person();
                 Ticket.Location location = ticket.new Location();
                 try {
-                    if (b[1].equals("") || b[1] == null) {
+                    if (b[0].equals("") || b[0] == null) {
                         throw new Exception();
-                    } else ticket.setName(b[1]);
+                    } else ticket.setName(b[0]);
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указано имя у билета №" + ticket.getMapKey() + ",изменено на Name,можете исправить с помощью команды update_by_key.\n");
@@ -41,9 +37,9 @@ public class Decoder{
                 }
 
                 try {
-                    if (b[2].equals("") || b[2] == null || (Long.parseLong(b[1]) >= 297)) {
+                    if (b[1].equals("") || b[1] == null || (Long.parseLong(b[1]) >= 297)) {
                         throw new Exception();
-                    } else coordinates.setX(Long.parseLong(b[2]));
+                    } else coordinates.setX(Long.parseLong(b[1]));
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указана координата Х у билета №" + ticket.getMapKey() + ",изменено на 0,можете исправить с помощью команды update_by_key.\n");
@@ -51,9 +47,9 @@ public class Decoder{
                 }
 
                 try {
-                    if (b[3].equals("") || b[3] == null) {
+                    if (b[2].equals("") || b[2] == null) {
                         throw new Exception();
-                    } else coordinates.setY(Integer.parseInt(b[3]));
+                    } else coordinates.setY(Integer.parseInt(b[2]));
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указана координата Y у билета №" + ticket.getMapKey() + ",изменено на 0,можете исправить с помощью команды update_by_key.\n");
@@ -63,9 +59,9 @@ public class Decoder{
                 ticket.setCoordinates(coordinates);
 
                 try {
-                    if (b[4].equals("") || b[4] == null || (Float.parseFloat(b[4]) <= 0)) {
+                    if (b[3].equals("") || b[3] == null || (Float.parseFloat(b[4]) <= 0)) {
                         throw new Exception();
-                    } else ticket.setPrice(Float.parseFloat(b[4]));
+                    } else ticket.setPrice(Float.parseFloat(b[3]));
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указана цена у билета №" + ticket.getMapKey() + ",изменено на 1,можете исправить с помощью команды update_by_key.\n");
@@ -73,9 +69,9 @@ public class Decoder{
                 }
 
                 try {
-                    if (b[5].equals("") || b[5] == null) {
+                    if (b[4].equals("") || b[4] == null) {
                         throw new Exception();
-                    } else ticket.setComment(b[5]);
+                    } else ticket.setComment(b[4]);
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указан комментарий у билета №" + ticket.getMapKey() + ",изменено на StandartKomment,можете исправить с помощью команды update_by_key.\n");
@@ -83,7 +79,7 @@ public class Decoder{
                 }
 
                 try {
-                    ticket.setType(Ticket.TicketType.valueOf(b[6]));
+                    ticket.setType(Ticket.TicketType.valueOf(b[5]));
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указан Тип Билета у билета №" + ticket.getMapKey() + ",изменено на USUAL,можете исправить с помощью команды update_by_key.\n");
@@ -91,25 +87,24 @@ public class Decoder{
                 }
 
                 try {
-                    person.setHairColor(Ticket.Color.valueOf(b[7]));
+                    person.setHairColor(Ticket.Color.valueOf(b[6]));
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указан Цвет Волос у человека с билетом №" + ticket.getMapKey() + ",изменено на BLACK,можете исправить с помощью команды update_by_key.\n");
                     person.setHairColor(Ticket.Color.BLACK);
                 }
                 try {
-                    person.setNationality(Ticket.Country.valueOf(b[8]));
+                    person.setNationality(Ticket.Country.valueOf(b[7]));
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указана Национальность у человека билетом №" + ticket.getMapKey() + ",изменено на RUSSIA,можете исправить с помощью команды update_by_key.\n");
                     person.setNationality(Ticket.Country.RUSSIA);
                 }
-                person.setPassportID();
 
                 try {
-                    if (b[9].equals("") || b[9] == null) {
+                    if (b[8].equals("") || b[8] == null) {
                         throw new Exception();
-                    } else location.setX(Integer.parseInt(b[9]));
+                    } else location.setX(Integer.parseInt(b[8]));
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указана координата X у локации у билета №" + ticket.getMapKey() + ",изменено на 0,можете исправить с помощью команды update_by_key.\n");
@@ -117,18 +112,18 @@ public class Decoder{
                 }
 
                 try {
-                    if (b[10].equals("") || b[10] == null) {
+                    if (b[9].equals("") || b[9] == null) {
                         throw new Exception();
-                    } else location.setY(Double.parseDouble(b[10]));
+                    } else location.setY(Double.parseDouble(b[9]));
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указана координата Y у локации у билета №" + ticket.getMapKey() + ",изменено на 0,можете исправить с помощью команды update_by_key.\n");
                     location.setY((double) 0);
                 }
                 try {
-                    if (b[11].equals("") || b[11] == null) {
+                    if (b[10].equals("") || b[10] == null) {
                         throw new Exception();
-                    } else location.setName(b[11]);
+                    } else location.setName(b[10]);
                 }
                 catch (Exception e){
                     errorMessage+=("Некорректно указано Имя у локации у билета №" + ticket.getMapKey() + ",изменено на Name,можете исправить с помощью команды update_by_key.\n");
@@ -139,8 +134,6 @@ public class Decoder{
 
                 collection.put(ticket.getMapKey(), ticket);
 
-            }
-        }
         if (errorMessage.equals("В ходе заполнения коллекции возникли следующие ошибки:\n")) {
             errorMessage="";
         }

@@ -36,11 +36,11 @@ public class ExecuteScript implements Command {
      *
      * @return the execute data
      */
-    public static String getExecuteData() {
+    public static String[] getExecuteData() {
         return executeData;
     }
 
-    private static String executeData = "";
+    private static String[] executeData = new String[11];
     @Override
     public void execute(String par1, Socket clientSocket,String user) throws IOException, SQLException {
         ServerSender serverSender = new ServerSender();
@@ -52,48 +52,56 @@ public class ExecuteScript implements Command {
                 int number = i;
                 inExecution = true;
                 String[] commandAndPar;
-                commandAndPar = stroka[i].split(" ");
-                if (commandAndPar[0].equals("execute_script")) {
-                    Iterator iterator = fileNames.iterator();
-                    boolean alreadyInList = false;
-                    while (iterator.hasNext()) {
-                        if (commandAndPar[1].equals(iterator.next())) alreadyInList = true;
-                    }
-                    if (alreadyInList) {
-                        serverSender.send(clientSocket,"\n!!!Попытка зациклить программу прервана,постарайтесь такого больше не допускать.\n",2);
-                    } else {
-                        fileNames.add(commandAndPar[1]);
-                        ++numberOfExecution;
-                        Invoker.execute(stroka[i],clientSocket,user);
-                        --numberOfExecution;
-                    }
-                } else {
-                    if (commandAndPar[0].equals("insert_key") || commandAndPar[0].equals("update_key")) {
-
-                        for (int j = 0; (j < 12 && i < stroka.length - 1); j++) {
-                            ++i;
-                            executeData +=" ,"+ stroka[i] + ",";
+                if (!(stroka[i].equals("") || stroka[i] == null)) {
+                    commandAndPar = stroka[i].split(" ");
+                    if (commandAndPar[0].equals("execute_script")) {
+                        Iterator iterator = fileNames.iterator();
+                        boolean alreadyInList = false;
+                        while (iterator.hasNext()) {
+                            if (commandAndPar[1].equals(iterator.next())) alreadyInList = true;
                         }
-                        Invoker.execute(stroka[number],clientSocket,user);
-                        executeData = "";
-                    } else Invoker.execute(stroka[i],clientSocket,user);
+                        if (alreadyInList) {
+                            serverSender.send(clientSocket, "\n!!!Попытка зациклить программу прервана,постарайтесь такого больше не допускать.\n", 2);
+                        } else {
+                            fileNames.add(commandAndPar[1]);
+                            ++numberOfExecution;
+                            Invoker.execute(stroka[i], clientSocket, user);
+                            --numberOfExecution;
+                        }
+                    } else {
+                        if (commandAndPar[0].equals("insert_key") || commandAndPar[0].equals("update_key")) {
+
+                            for (int j = 0; (j < 11 && i < stroka.length - 1); j++) {
+                                ++i;
+                                executeData[j] = stroka[i];
+                            }
+                            for (String m : executeData
+                            ) {
+                                System.out.println(m);
+
+                            }
+                            Invoker.execute(stroka[number], clientSocket, user);
+                            executeData = new String[11];
+                        } else Invoker.execute(stroka[i], clientSocket, user);
+                    }
+                    Thread.sleep(50);
                 }
-                Thread.sleep(50);
             }
             if (numberOfExecution==0){ fileNames.clear();inExecution = false;serverSender.send(clientSocket,"",0);}
 
         } catch (AccessDeniedException ex) {
-            if (ExecuteScript.inExecution) serverSender.send(clientSocket,"Нет доступа к файлу.",2);
-            else serverSender.send(clientSocket,"Нет доступа к файлу.",0);
+
+             serverSender.send(clientSocket,"Нет доступа к файлу.",0);
         }
         catch (NullPointerException ex){
-            if (ExecuteScript.inExecution) serverSender.send(clientSocket,"Имя файла не указано или файл пустой.",2);
-            else serverSender.send(clientSocket,"Имя файла не указано или файл пустой.",0);
+            ex.printStackTrace();
+
+             serverSender.send(clientSocket,"Имя файла не указано или файл пустой.",0);
 
         }
         catch (FileNotFoundException ex){
-            if (ExecuteScript.inExecution) serverSender.send(clientSocket,"Файл не найден,попробуйте ещё раз.",2);
-            else serverSender.send(clientSocket,"Файл не найден,попробуйте ещё раз.",0);;
+
+             serverSender.send(clientSocket,"Файл не найден,попробуйте ещё раз.",0);;
 
         } catch (InterruptedException e) {
             e.printStackTrace();

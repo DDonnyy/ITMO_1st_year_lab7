@@ -243,8 +243,8 @@ public class Ticket implements Serializable {
         /**
          * Sets passport id.
          */
-        public void setPassportID() {
-        this.passportID = String.valueOf(this.hashCode());
+        public void setPassportID(Long id) {
+        this.passportID = String.valueOf(id);
     }
 
         /**

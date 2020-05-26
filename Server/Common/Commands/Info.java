@@ -30,7 +30,6 @@ public class Info implements Command {
         dBworking.loadAllTickets();
         TicketCollection.getLock().readLock().lock();
         ServerSender serverSender = new ServerSender();
-
         TicketCollection ticketCollection = new TicketCollection();
         if (ExecuteScript.inExecution)  serverSender.send(clientSocket,ticketCollection.getInfo(),2);
         else serverSender.send(clientSocket,ticketCollection.getInfo(),0);

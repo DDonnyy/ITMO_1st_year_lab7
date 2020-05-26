@@ -33,7 +33,6 @@ public class RemoveByKey implements Command {
         ServerSender serverSender = new ServerSender();
         ServerReceiver serverReceiver = new ServerReceiver();
         dBworking.loadAllTickets();
-        TicketCollection.getLock().writeLock().lock();
         if(par1==null&& ExecuteScript.inExecution){
             serverSender.send(clientSocket,"Параметр не был указан,выполнение команды \"remove_key\" невозможно.",2);
         } else
@@ -47,6 +46,7 @@ public class RemoveByKey implements Command {
             } else this.execute(key,clientSocket,user);
         } else {
             try {
+                TicketCollection.getLock().writeLock().lock();
                 TicketCollection ticketCollection = new TicketCollection();
                 if (ticketCollection.getSize() == 0) {
                     if (ExecuteScript.inExecution) serverSender.send(clientSocket,"Коллекция как бы пустая.",2);
@@ -67,8 +67,7 @@ public class RemoveByKey implements Command {
                         keysToDelete.forEach(ticketCollection::removeTicket);
                         dBworking.uploadAllTickets();
                     }
-                    int newSize = ticketCollection.getSize();
-                    if (newSize < oldSize) {
+                    if (keysToDelete.size()>0) {
                         if (ExecuteScript.inExecution)
                             serverSender.send(clientSocket,"Элемент с ключом " + givenId + " удалён из коллекции.", 2);
                         else serverSender.send(clientSocket,"Элемент с ключом " + givenId + " удалён из коллекции.", 0);

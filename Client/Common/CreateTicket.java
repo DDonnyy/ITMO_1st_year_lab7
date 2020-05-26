@@ -34,7 +34,6 @@ public class CreateTicket implements Serializable {
             this.setComment(ticket);
             this.setTicketType(ticket);
             this.setPrice(ticket);
-            person.setPassportID();
             this.setHairColor(person);
             this.setNationality(person);
             this.setCoordinateXForLocation(location);

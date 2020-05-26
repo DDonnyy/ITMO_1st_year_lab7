@@ -18,10 +18,6 @@ import java.util.TreeMap;
  * The type Insert key.
  */
 public class InsertKey implements Command {
-
-    TicketCollection ticketCollection = new TicketCollection();
-    CreateTicket createTicket = new CreateTicket();
-
     /**
      * Instantiates a new Insert key.
      */
@@ -30,12 +26,11 @@ public class InsertKey implements Command {
     }
     @Override
     public void execute(String par1, Socket clientSocket,String user) throws IOException, SQLException {
+        TicketCollection ticketCollection = new TicketCollection();
         ServerSender serverSender = new ServerSender();
         ServerReceiver serverReceiver = new ServerReceiver();
         DBworking dBworking = new DBworking();
         dBworking.ConnectionToDB();
-        dBworking.loadAllTickets();
-        TicketCollection.getLock().writeLock().lock();
         try {
             if (ExecuteScript.inExecution){
                 if(ExecuteScript.getExecuteData().equals("")||par1.equals("")||par1==null) {
@@ -46,7 +41,10 @@ public class InsertKey implements Command {
                     Long key =Long.parseLong(par1);
                     ticket.setMapKey(key);
                     ticket.setUser(user);
+                    ticket.getPerson().setPassportID(dBworking.getNewPassportID());
                     ticket.setCreationDate(Timestamp.from(Instant.now()));
+                    dBworking.loadAllTickets();
+                    TicketCollection.getLock().writeLock().lock();
                         ticketCollection.putTicket(key, ticket);
                         dBworking.uploadAllTickets();
                         serverSender.send(clientSocket, "В коллекцию был добавлен элемент.", 2);
@@ -79,11 +77,18 @@ public class InsertKey implements Command {
                     serverSender.send(clientSocket,(String.valueOf(key)),3);
                     Ticket ticket = (Ticket)serverReceiver.receive(clientSocket);
                     ticket.setUser(user);
-
-                    ticketCollection.putTicket(key,ticket);
-                    dBworking.uploadAllTickets();
-                    serverSender.send(clientSocket,"В коллекцию успешно добавлен элемент.",0);
-
+                    ticket.setCreationDate(Timestamp.from(Instant.now()));
+                    ticket.getPerson().setPassportID(dBworking.getNewPassportID());
+                    if (dBworking.ticketExist(key)){
+                        keyExist = true;
+                    }
+                    else {
+                        dBworking.loadAllTickets();
+                        TicketCollection.getLock().writeLock().lock();
+                        ticketCollection.putTicket(key, ticket);
+                        dBworking.uploadAllTickets();
+                        serverSender.send(clientSocket, "В коллекцию успешно добавлен элемент.", 0);
+                    }
                 }
                 if (keyExist) {
                     serverSender.send(clientSocket,"Элемент с таким ключом уже есть в коллекции,желаете заменить его на новый?(YES/ДА|Регистр не важен.)",1);
@@ -94,7 +99,10 @@ public class InsertKey implements Command {
                             serverSender.send(clientSocket,(String.valueOf(key)),3);
                             Ticket ticket = (Ticket)serverReceiver.receive(clientSocket);
                             ticket.setUser(user);
-
+                            ticket.setCreationDate(Timestamp.from(Instant.now()));
+                            ticket.getPerson().setPassportID(dBworking.getNewPassportID());
+                            dBworking.loadAllTickets();
+                            TicketCollection.getLock().writeLock().lock();
                             ticketCollection.putTicket(key,ticket);
                             dBworking.uploadAllTickets();
                             serverSender.send(clientSocket,"В коллекцию успешно добавлен элемент.",0);
@@ -105,7 +113,7 @@ public class InsertKey implements Command {
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            serverSender.send(clientSocket,"Число должно быть типа Long,попробуйте ещё раз.",2);
+            serverSender.send(clientSocket,"Что-то пошло не так( Поробуйте ещё раз.",2);
             this.execute(null,clientSocket,user);
         }
         finally {

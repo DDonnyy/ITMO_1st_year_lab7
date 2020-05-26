@@ -30,7 +30,6 @@ public class RemoveGreater implements Command {
         ServerSender serverSender = new ServerSender();
         ServerReceiver serverReceiver = new ServerReceiver();
         dBworking.loadAllTickets();
-        TicketCollection.getLock().writeLock().lock();
         if(par1==null&& ExecuteScript.inExecution){
             serverSender.send(clientSocket,"Параметр не был указан,выполнение команды \"remove_greater\" невозможно.",2);
         } else
@@ -44,6 +43,7 @@ public class RemoveGreater implements Command {
             } else this.execute(key,clientSocket,user);
         } else {
             try {
+                TicketCollection.getLock().writeLock().lock();
                 TicketCollection ticketCollection = new TicketCollection();
                 if (ticketCollection.getSize() == 0) {
                     if (ExecuteScript.inExecution)  serverSender.send(clientSocket,"Коллекция как бы пустая.",2);
@@ -55,8 +55,20 @@ public class RemoveGreater implements Command {
                             .getTickets()
                             .entrySet()
                             .stream()
+                            .filter(s -> s.getValue().getUser().equals(user))
                             .filter((s)->s.getValue().getMapKey()>givenId)
                             .forEach((ticket)->keysToDelete.add(ticket.getKey()));
+                    if (keysToDelete.size() == 0) {
+                        if (ExecuteScript.inExecution)
+                            serverSender.send(clientSocket, "Элементы для удаления не были найдены.", 2);
+                        else serverSender.send(clientSocket, "Элементы для удаления не были найдены.", 0);
+                    } else {
+                        keysToDelete.forEach(ticketCollection::removeTicket);
+                        dBworking.uploadAllTickets();
+                        if (ExecuteScript.inExecution)
+                            serverSender.send(clientSocket, "Все возможные обьекты были удалены.", 2);
+                        else serverSender.send(clientSocket, "Все возможные обьекты были удалены.", 0);
+                    }
 
                 }
             } catch (NumberFormatException | NullPointerException e) {

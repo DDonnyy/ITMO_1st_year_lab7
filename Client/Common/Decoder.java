@@ -104,7 +104,6 @@ public class Decoder{
                     errorMessage+=("Некорректно указана Национальность у человека билетом №" + ticket.getMapKey() + ",изменено на RUSSIA,можете исправить с помощью команды update_by_key.\n");
                     person.setNationality(Ticket.Country.RUSSIA);
                 }
-                person.setPassportID();
 
                 try {
                     if (b[9].equals("") || b[9] == null) {
