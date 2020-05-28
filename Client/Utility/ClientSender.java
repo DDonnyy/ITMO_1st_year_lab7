@@ -13,7 +13,7 @@ public class ClientSender {
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(ClientReceiver.sock.getOutputStream());
             objectOutputStream.writeObject(o);
-            objectOutputStream.flush();
+
     } catch (IOException e) {
             System.out.println("Произошла некоторая ошибка,необходимо переподключение.");
             ClientSender.serverisconnected = false;
@@ -22,7 +22,7 @@ public class ClientSender {
     public static void tryToConnect() throws InterruptedException {
         while(!serverisconnected)
             try {
-                Socket socket = new Socket("localhost", 3014);
+                Socket socket = new Socket("localhost", 3016);
                 serverisconnected = true;
                 System.out.println("Успешно подключено к серверу.");
                 ClientReceiver.sock = socket ;

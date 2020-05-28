@@ -11,14 +11,15 @@ import java.util.TreeMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class DBworking {
-    private static final String url = "jdbc:postgresql://pg:5432/studs";
-    private static final String user = "s285706";
-    private static final String password = "boi902";
-//    private static final String url = "jdbc:postgresql://localhost:5432/studs";
-//    private static final String user = "postgres";
-//    private static final String password = "123456";
+//    private static final String url = "jdbc:postgresql://pg:5432/studs";
+//    private static final String user = "s285706";
+//    private static final String password = "boi902";
+    private static final String url = "jdbc:postgresql://localhost:5432/studs";
+    private static final String user = "postgres";
+    private static final String password = "123456";
     private static Connection connection;
     private static Statement stmt;
+    private static  PreparedStatement preparedStatement;
     private static ResultSet rs;
 
     public  Boolean ConnectionToDB() throws SQLException {
@@ -33,8 +34,10 @@ public class DBworking {
     public Boolean userExist(String user, String password) {
 
         try {
-            stmt = connection.createStatement();
-            rs = stmt.executeQuery(("select *  from users d where exists( select * from users where d.login ='" + user + "'and d.password='" + password + "')"));
+           preparedStatement = connection.prepareStatement("select *  from users d where exists( select * from users where d.login = ? and d.password= ?)");
+            preparedStatement.setString(1,user);
+            preparedStatement.setString(2,password);
+            rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 return true;
             } else return false;
@@ -48,7 +51,6 @@ public class DBworking {
             stmt = connection.createStatement();
             rs = stmt.executeQuery("select *  from tickets d where exists( select * from users where d.id ="+id+")");
             if (rs.next()) {
-                System.out.println(rs);
                 return true;
             } else return false;
         } catch (SQLException e) {
@@ -59,38 +61,43 @@ public class DBworking {
 
     public Boolean addNewUser(String user, String password) {
         try {
-            stmt = connection.createStatement();
-            stmt.execute(("insert into users values ('"+user+"','"+password+"')"));
+            preparedStatement = connection.prepareStatement("insert into users values (?,?)");
+            preparedStatement.setString(1,user);
+            preparedStatement.setString(2,password);
+            preparedStatement.execute();
             return true;
         } catch (SQLException e) {
+
             return false;
         }
     }
     public void uploadAllTickets(){
         TicketCollection ticketCollection = new TicketCollection();
         try{
-        TreeMap<Long,Ticket> ticketTreeMap = ticketCollection.getTickets();
             stmt = connection.createStatement();
             stmt.execute("TRUNCATE tickets");
+        TreeMap<Long,Ticket> ticketTreeMap = ticketCollection.getTickets();
             ticketTreeMap.entrySet().stream().forEach(x-> {
                 try {
-                    stmt.execute("INSERT into tickets values(" +
-                            x.getValue().getMapKey()+
-                            ",'"+x.getValue().getName()+
-                            "',"+x.getValue().getCoordinates().getX()+
-                            ","+x.getValue().getCoordinates().getY()+
-                            ","+x.getValue().getPrice()+
-                            ",'"+(x.getValue().getComment())+
-                            "','"+x.getValue().getType()+
-                            "','"+x.getValue().getPerson().getHairColor()+
-                            "','"+x.getValue().getPerson().getNationality()+
-                            "',"+x.getValue().getPerson().getLocation().getX()+
-                            ","+x.getValue().getPerson().getLocation().getY()+
-                            ",'"+x.getValue().getPerson().getLocation().getName()+
-                            "','"+x.getValue().getCreationDate()+
-                            "','"+x.getValue().getUser()+"'" +
-                            ","+Long.parseLong(x.getValue().getPerson().getPassportID())+");");
-                } catch (SQLException e) {
+                    preparedStatement = connection.prepareStatement("INSERT into tickets values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    preparedStatement.setLong(1, Math.toIntExact(x.getValue().getMapKey()));
+                    preparedStatement.setString(2, x.getValue().getName());
+                    preparedStatement.setLong(3, x.getValue().getCoordinates().getX());
+                    preparedStatement.setLong(4, x.getValue().getCoordinates().getY());
+                    preparedStatement.setDouble(5, x.getValue().getPrice());
+                    preparedStatement.setString(6, x.getValue().getComment());
+                    preparedStatement.setString(7, x.getValue().getType().toString());
+                    preparedStatement.setString(8, x.getValue().getPerson().getHairColor().toString());
+                    preparedStatement.setString(9, x.getValue().getPerson().getNationality().toString());
+                    preparedStatement.setLong(10, x.getValue().getPerson().getLocation().getX());
+                    preparedStatement.setDouble(11, x.getValue().getPerson().getLocation().getY());
+                    preparedStatement.setString(12, x.getValue().getPerson().getLocation().getName());
+                    preparedStatement.setTimestamp(13, x.getValue().getCreationDate());
+                    preparedStatement.setString(14, x.getValue().getUser());
+                    preparedStatement.setLong(15, Long.parseLong(x.getValue().getPerson().getPassportID()));
+                    preparedStatement.execute();
+                }
+                catch (SQLException e) {
                     e.printStackTrace();
                 }
             });
@@ -105,6 +112,7 @@ public class DBworking {
         try {
             TicketCollection.getLock().writeLock().lock();
             TicketCollection ticketCollection = new TicketCollection();
+            ticketCollection.getTickets().clear();
             stmt = connection.createStatement();
             rs = stmt.executeQuery("select * from tickets");
             while (rs.next()){
@@ -141,8 +149,8 @@ public class DBworking {
     public Long getNewPassportID(){
         try {
             stmt = connection.createStatement();
-            rs =stmt.executeQuery("SELECT nextval(\'tickets_passportid_seq\')");
-           // rs =stmt.executeQuery("SELECT nextval('passport')");
+            //rs =stmt.executeQuery("SELECT nextval(\'tickets_passportid_seq\')");
+            rs =stmt.executeQuery("SELECT nextval('passport')");
             if (rs.next()) {
                 return rs.getLong(1);
             }

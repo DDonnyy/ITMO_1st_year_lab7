@@ -48,6 +48,7 @@ public class InsertKey implements Command {
                         ticketCollection.putTicket(key, ticket);
                         dBworking.uploadAllTickets();
                         serverSender.send(clientSocket, "В коллекцию был добавлен элемент.", 2);
+                    TicketCollection.getLock().writeLock().unlock();
 
                 }
             }
@@ -88,6 +89,7 @@ public class InsertKey implements Command {
                         ticketCollection.putTicket(key, ticket);
                         dBworking.uploadAllTickets();
                         serverSender.send(clientSocket, "В коллекцию успешно добавлен элемент.", 0);
+                        TicketCollection.getLock().writeLock().unlock();
                     }
                 }
                 if (keyExist) {
@@ -106,6 +108,7 @@ public class InsertKey implements Command {
                             ticketCollection.putTicket(key,ticket);
                             dBworking.uploadAllTickets();
                             serverSender.send(clientSocket,"В коллекцию успешно добавлен элемент.",0);
+                            TicketCollection.getLock().writeLock().unlock();
                         }
                     } else serverSender.send(clientSocket,"Ну тогда ничего не выйдет,попробуйте что-нибудь другое получается соответственно.",0);
 
@@ -115,9 +118,6 @@ public class InsertKey implements Command {
             e.printStackTrace();
             serverSender.send(clientSocket,"Что-то пошло не так( Поробуйте ещё раз.",2);
             this.execute(null,clientSocket,user);
-        }
-        finally {
-            TicketCollection.getLock().writeLock().unlock();
         }
     }
 

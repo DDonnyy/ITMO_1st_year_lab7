@@ -45,9 +45,9 @@ public class Remove_lower implements Command {
                 this.execute(par1, clientSocket, user);
             } else this.execute(key, clientSocket, user);
         } else {
+            TicketCollection.getLock().writeLock().lock();
             try {
                 dBworking.loadAllTickets();
-                TicketCollection.getLock().writeLock().lock();
                 TicketCollection ticketCollection = new TicketCollection();
                 if (ticketCollection.getSize() == 0) {
                     if (ExecuteScript.inExecution) serverSender.send(clientSocket, "Коллекция как бы пустая.", 2);
@@ -80,8 +80,8 @@ public class Remove_lower implements Command {
                     serverSender.send(clientSocket, "Ключ указан некорректно,попробуйте ещё раз.", 2);
                 else serverSender.send(clientSocket, "Ключ указан некорректно,попробуйте ещё раз.", 0);
             }
+            TicketCollection.getLock().writeLock().unlock();
         }
-        TicketCollection.getLock().writeLock().unlock();
     }
     @Override
     public String getInfo() {

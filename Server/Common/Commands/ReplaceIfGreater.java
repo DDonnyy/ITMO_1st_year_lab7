@@ -42,7 +42,6 @@ public class ReplaceIfGreater implements Command {
             } else {
                 long givenkey = Long.parseLong(par1);
                 dBworking.loadAllTickets();
-                TicketCollection.getLock().writeLock().lock();
                 if (dBworking.ticketExist(givenkey)) {
                     TicketCollection ticketCollection = new TicketCollection();
                     if (ticketCollection.getSize() == 0) {
@@ -76,9 +75,7 @@ public class ReplaceIfGreater implements Command {
     } catch (NumberFormatException e){
             serverSender.send(clientSocket,"Неверно указано одно из значений.\nОбратите внимание,что ключ должен быть целым числом и цена числом больше 0.",0);
         }
-        finally {
-            TicketCollection.getLock().writeLock().unlock();
-        }
+
     }
 
     @Override

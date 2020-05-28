@@ -56,7 +56,6 @@ public class RemoveAllByPerson implements Command {
                 else serverSender.send(clientSocket, "Все возможные обьекты с указанным человеком были удалены.", 0);
             }
         }
-        TicketCollection.getLock().writeLock().unlock();
     }
 
     @Override

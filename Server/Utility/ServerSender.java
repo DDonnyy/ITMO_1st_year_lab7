@@ -50,7 +50,7 @@ public class ServerSender {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(client.getOutputStream());
                 objectOutputStream.writeObject(o);
                 answer.clear();
-                objectOutputStream.flush();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

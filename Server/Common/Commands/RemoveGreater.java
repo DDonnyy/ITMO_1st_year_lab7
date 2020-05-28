@@ -41,9 +41,9 @@ public class RemoveGreater implements Command {
                 serverSender.send(clientSocket,"Ключ не может быть null",2);
                 this.execute(par1,clientSocket,user);
             } else this.execute(key,clientSocket,user);
-        } else {
+        } else {TicketCollection.getLock().writeLock().lock();
             try {
-                TicketCollection.getLock().writeLock().lock();
+
                 TicketCollection ticketCollection = new TicketCollection();
                 if (ticketCollection.getSize() == 0) {
                     if (ExecuteScript.inExecution)  serverSender.send(clientSocket,"Коллекция как бы пустая.",2);
@@ -74,9 +74,9 @@ public class RemoveGreater implements Command {
             } catch (NumberFormatException | NullPointerException e) {
                 if (ExecuteScript.inExecution) serverSender.send(clientSocket,"Ключ указан некорректно,попробуйте ещё раз.",2);
                 else serverSender.send(clientSocket,"Ключ указан некорректно,попробуйте ещё раз.",0);
-            }
+            }TicketCollection.getLock().writeLock().unlock();
         }
-        TicketCollection.getLock().writeLock().unlock();
+
     }
 
     @Override

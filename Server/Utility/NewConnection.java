@@ -17,10 +17,10 @@ import java.util.concurrent.Executors;
 
 public class NewConnection implements Runnable {
     static ExecutorService executeIt = Executors.newCachedThreadPool();
-    private static Socket clientSocket;
+    private Socket clientSocket;
     private String newuser;
     public NewConnection(Socket client){
-        NewConnection.clientSocket=client;
+        this.clientSocket=client;
     }
     @Override
     public void run() {
@@ -79,6 +79,7 @@ public class NewConnection implements Runnable {
                                 serverSender.send(clientSocket, "Вы успешно зарегистрированы,теперь у вас есть доступ к информации о всех билетах и возможность изменять свои/добавлять свои билеты", 0);
                                 islogged = true;
                                 newuser = login;
+                                Thread.sleep(20);
                             } else serverSender.send(clientSocket,"Имя пользователя занято,попробуйте ещё раз",2);
                         }
                     }

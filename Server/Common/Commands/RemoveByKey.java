@@ -45,8 +45,8 @@ public class RemoveByKey implements Command {
                 this.execute(par1,clientSocket,user);
             } else this.execute(key,clientSocket,user);
         } else {
+            TicketCollection.getLock().writeLock().lock();
             try {
-                TicketCollection.getLock().writeLock().lock();
                 TicketCollection ticketCollection = new TicketCollection();
                 if (ticketCollection.getSize() == 0) {
                     if (ExecuteScript.inExecution) serverSender.send(clientSocket,"Коллекция как бы пустая.",2);
